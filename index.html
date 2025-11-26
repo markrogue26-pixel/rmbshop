@@ -1,1 +1,72 @@
 
+
+<!DOCTYPE html>
+<html>
+    <head>
+<meta charset="utf-8">
+        <title>Категории</title>
+        <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+        <style>
+            body {
+                background-color: #a3a3a3 ;
+            }
+
+            .btn-row{
+                margin-top: 20px;
+                display: flex;
+                justify-content: center;
+                gap: 25px;
+            }
+            .category-button{
+                background-color: #000000;
+                padding: 18px;
+                border-radius: 10px;
+                color: rgb(154, 0, 0);
+                font-size: large;
+                cursor: pointer;
+                transition: 0.2s;
+                border: none;
+            }
+            .location-button{
+                background-color: #a3a3a3;
+                width: 100px;
+                height: 25px;
+                border-radius: 15px;
+                display: flex;
+                margin-top: 10px;
+            }     
+            .button-basket{
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+                background-color: #fff;
+                border:1px solid black;
+                background-image: url(basket.jpeg);
+                background-size: 100%;
+                background-position: center;
+                cursor: pointer;
+                padding: 0;
+                position: absolute;
+                margin-top:300px;
+                margin-left: 500px;
+            }
+        </style>
+     </head>
+     <body>
+         <p style="text-align: center;color: #000000;font-size: 40px; font-family:Instrument Serif, sans-serif">recoudre ma blessure</p>
+         <p style="color: black;font-size: 20px; font-family: font, sans-serif;">1.Categories</p>
+    <div class="btn-row">
+        <a href="categories.html"><button class="category-button">Up</button></a>
+        <a href="categories.html"><button class="category-button">down</button></a>
+        <a href="categories.html"><button class="category-button">shoes</button></a>
+    </div>
+    <p style="color: black; font-size: 20px;font-family: font, sans-serif">2.delivery</p>
+    <div class="btn-loc">
+        <button class="location-button"><b>pickup</b></button>
+        <button class="location-button"><b>yandex</b></button>
+    </div>
+       <div class="button-basket">
+    </div>
+
+    </body>
+</html>
