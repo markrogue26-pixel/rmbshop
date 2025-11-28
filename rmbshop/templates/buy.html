@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Покупка</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:wght@400;700&display=swap" rel="stylesheet">
+<style>
+    body {
+        background-color: #a3a3a3;
+        font-family: Arial, sans-serif;
+        animation: fadeIn 0.8s ease;
+        text-align: center;
+        padding: 20px;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to   { opacity: 1; }
+    }
+
+    .title {
+        font-size: 35px;
+        font-family: 'Instrument Serif', serif;
+        margin: 20px 0;
+        color: #000;
+    }
+
+    .item {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        padding: 20px;
+        background: white;
+        border-radius: 10px;
+        max-width: 600px;
+        margin: 20px auto;
+    }
+
+    .item img {
+        width: 120px;
+        height: 120px;
+        object-fit: cover;
+        border-radius: 10px;
+    }
+
+    .info {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        text-align: left;
+    }
+
+    .buttons {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+    .plus_btn, .minus_btn {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        font-size: 18px;
+        border: none;
+        cursor: pointer;
+        background-color: #a3a3a3;
+        color: white;
+        transition: 0.2s;
+    }
+
+    .plus_btn:hover, .minus_btn:hover {
+        transform: scale(1.15);
+        background-color: black;
+    }
+
+    .info2 {
+        margin-top: 30px;
+    }
+
+    .choose_country {
+        border-radius: 10px;
+        font-size: large;
+        border: none;
+        cursor: pointer;
+        padding: 10px 20px;
+        margin: 5px;
+        transition: 0.25s;
+    }
+
+    .choose_country:hover {
+        transform: translateY(-4px);
+        background-color: black;
+        color: white;
+    }
+
+    .info3 input {
+        border-radius: 10px;
+        padding: 5px;
+        border: 2px solid black;
+        width: 100px;
+        margin-bottom: 10px;
+    }
+
+    .send {
+        border-radius: 10px;
+        margin-top: 10px;
+        border: none;
+        cursor: pointer;
+        padding: 10px 20px;
+        transition: 0.25s;
+    }
+
+    .send:hover {
+        transform: scale(1.1) translateY(-3px);
+        background-color: black;
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+        color:white;
+    }
+</style>
+</head>
+<body>
+
+<p class="title">recoudre ma blessure</p>
+
+<div class="item">
+    <img src="{{ url_for('static', filename=product_img) }}" alt="{{ product_name }}">
+    <div class="info">
+        <h2>{{ product_name }}</h2>
+        <p>{{ product_description }}</p>
+        <div class="buttons">
+            <button type="button" class="minus_btn">-</button>
+            <span class="quantity">1</span>
+            <button type="button" class="plus_btn">+</button>
+        </div>
+    </div>
+</div>
+
+<div class="info2">
+    <h2>Delivery</h2>
+    <div>
+        <button type="button" class="choose_country"><b>Kazakhstan</b></button>
+        <button type="button" class="choose_country"><b>China</b></button>
+        <button type="button" class="choose_country"><b>Russia</b></button>
+    </div>
+</div>
+
+<form action="/order" method="post">
+    <div class="info3">
+        <input type="text" name="town" placeholder="Your town" required>
+        <input type="text" name="address" placeholder="Your address" required>
+        <input type="text" name="name" placeholder="Your name" required>
+        <input type="text" name="phone" placeholder="Phone numbers">
+        <input type="text" name="telegram" placeholder="@telegram">
+        <input type="hidden" name="product_name" value="{{ product_name }}">
+        <input type="hidden" id="quantityInput" name="quantity" value="1">
+    </div>
+    <button type="submit" class="send">Send</button>
+</form>
+
+<script>
+    const minusBtn = document.querySelector(".minus_btn");
+    const plusBtn = document.querySelector(".plus_btn");
+    const quantityText = document.querySelector(".quantity");
+    const quantityInput = document.getElementById("quantityInput");
+
+    let quantity = 1;
+
+    plusBtn.onclick = () => {
+        quantity++;
+        quantityText.textContent = quantity;
+        quantityInput.value = quantity;
+    };
+
+    minusBtn.onclick = () => {
+        if (quantity > 1) {
+            quantity--;
+            quantityText.textContent = quantity;
+            quantityInput.value = quantity;
+        }
+    };
+</script>
+
+</body>
+</html>
